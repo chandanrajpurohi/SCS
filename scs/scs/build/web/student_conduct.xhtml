@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+.comment-field {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  resize: vertical;
+  height: 100px;
+  width: 100%;
+}
+</style>
+    </h:head>
+    <h:body style="padding: 60px;">
+        <b:navBar brand="SCS" brandHref="#" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Home" href="home.xhtml"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:container>
+            <b:jumbotron>
+                <h1>Student Conduct</h1>
+               
+            </b:jumbotron>
+        </b:container>
+        <b:container>
+            <b:messages globalOnly="true"/>
+           <b:form inline="true">
+                <h:panelGrid columns="1" cellpadding="5">
+                    <b:inputText placeholder="Student ID" value="#{conduct.id}" />
+                    <b:commandButton look="primary btn-block" value="Search"  size="lg" icon="search"  action="#{conduct.student_register(conduct)}"/>
+                    <h:panelGrid columns="2">
+                     Names:   
+                     <b:inputText value="#{conduct.names}" />   
+                    Conduct:
+                    <b:inputText  value="#{conduct.conduct}" />
+                    Comment:
+                    <b:inputText styleClass="comment-field" value="#{conduct.comment}" />    
+                    </h:panelGrid>
+                    <b:commandButton look="primary btn-block" value="Submit"  size="lg" action="#{conduct.saveConduct(conduct)}"/>
+                </h:panelGrid>   
+            </b:form>
+        </b:container>
+       
+    </h:body>
+</html>
+

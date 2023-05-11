@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>SCS</title>
+    </h:head>
+    <h:body style="padding: 60px;">
+        <b:navBar brand="Book Jet" brandHref="#" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Home" href="home.xhtml"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:container>
+            <b:jumbotron>
+                <h1>Register Student</h1>
+               
+            </b:jumbotron>
+        </b:container> 
+        <b:container>
+           <b:form inline="true">
+                <h:panelGrid columns="1" cellpadding="5">
+                    <b:inputText placeholder="ID" value="#{student.id}"/>
+                    <b:inputText placeholder="Names" value='#{student.names}'/>
+                    <b:inputText placeholder="password" value='#{student.password}'/> <br/>
+                    <b:commandButton look="primary btn-block" value="Add" icon="log-in" size="lg" action="#{student.saveStudent(student)}"/>
+                </h:panelGrid>
+            </b:form>
+        </b:container>
+        <br/> <br/>
+        <b:container>
+            <h:form>
+                <b:dataTable value="#{student.allStudent}" var="a">
+                <b:dataTableColumn value="#{a.id}"/>
+                <b:dataTableColumn value="#{a.names}" />
+                <b:dataTableColumn value="#{a.password}" />
+                <b:dataTableColumn label="Edit">
+                    <h:commandLink action="#{student.findStudentById(a.id)}">Update</h:commandLink>
+                </b:dataTableColumn>      
+                <b:dataTableColumn label="Delete">
+                    <b:commandButton value="Delete" iconAwesome="trash"
+                                     onclick="if(!confirm('Are you sure')) return false"
+                                     action="#{student.deleteStudent(a.id)}">
+                      <f:ajax execute="@this" render="@form" />
+                    </b:commandButton>
+                 </b:dataTableColumn> 
+                
+                </b:dataTable>
+            </h:form>
+        </b:container>
+    </h:body>
+</html>
+
